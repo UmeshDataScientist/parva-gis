@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Web GIS Dashboard - Parva Planning and Infrastructure</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -10,40 +10,40 @@
 </head>
 <body>
     <script>
+        // Secure redirect to login if session is absent
         if (localStorage.getItem('gis_logged_in') !== 'true') {
-            window.location.href = 'login.html';
+            window.location.assign('./login.html');
         }
     </script>
 
     <header class="navbar">
-        <div class="nav-left">
-            <span class="brand-title">Parva Planning and Infrastructure</span>
-            <div class="filter-panel">
-                <select id="districtFilter">
-                    <option value="">Select District</option>
-                </select>
-                <select id="talukFilter" disabled>
-                    <option value="">Select Taluk</option>
-                </select>
-                <select id="layoutFilter" disabled>
-                    <option value="">Select Layout</option>
-                </select>
-                <button id="btnReset" class="btn-secondary">Reset View</button>
-            </div>
-        </div>
-        
-        <div class="nav-right">
-            <div class="search-box">
-                <input type="text" id="propertySearchInput" placeholder="Search Property No...">
-                <button id="btnSearch">Search</button>
-            </div>
-            <div class="header-info">
-                <span id="dateTimeDisplay"></span>
-                <span class="visitor-tag">Visitors: <strong id="visitorCount">1,482</strong></span>
-                <button onclick="localStorage.removeItem('gis_logged_in'); window.location.href='login.html';" class="btn-logout">Logout</button>
-            </div>
+        <div class="brand-title">Parva Planning and Infrastructure</div>
+        <div class="header-info">
+            <span id="dateTimeDisplay"></span>
+            <span class="visitor-tag">Visitors: <strong id="visitorCount">1,482</strong></span>
+            <button onclick="localStorage.removeItem('gis_logged_in'); window.location.assign('./login.html');" class="btn-logout">Logout</button>
         </div>
     </header>
+
+    <div class="control-subpanel">
+        <div class="filter-group">
+            <select id="districtFilter">
+                <option value="">Select District</option>
+            </select>
+            <select id="talukFilter" disabled>
+                <option value="">Select Taluk</option>
+            </select>
+            <select id="layoutFilter" disabled>
+                <option value="">Select Layout</option>
+            </select>
+        </div>
+        
+        <div class="search-group">
+            <input type="text" id="propertySearchInput" placeholder="Optional: Property No..." disabled>
+            <button id="btnSearch" disabled>Search</button>
+            <button id="btnReset" class="btn-secondary">Reset View</button>
+        </div>
+    </div>
 
     <div id="map"></div>
 
@@ -52,6 +52,6 @@
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <<script src="./js/app.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
