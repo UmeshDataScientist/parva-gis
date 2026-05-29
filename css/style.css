@@ -282,3 +282,129 @@ body, html {
 .btn-navigate:hover {
     background-color: #0b2545;
 }
+/* ==========================================================================
+   Responsive Mobile Viewport Styles Overrides
+   ========================================================================== */
+
+/* Base Flex Adjustments for Sub-Panel */
+.control-subpanel {
+    background-color: var(--secondary-color, #134074);
+    padding: 10px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    position: relative;
+    border-bottom: 2px solid var(--accent-color, #8DA9C4);
+}
+
+.filter-group, .search-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.control-subpanel select, .control-subpanel input {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background: #fff;
+}
+
+.control-subpanel button {
+    padding: 8px 14px;
+    border-radius: 4px;
+    border: none;
+    background: var(--primary-color, #0B2545);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Recalculate dynamic map container viewport canvas space */
+#map {
+    height: calc(100vh - 135px); /* Automatically accounts for nested action headers */
+    width: 100%;
+    z-index: 1;
+}
+
+/* SMARTPHONE SCREEN LAYOUT OPTIMIZATIONS */
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        flex-direction: column;
+        padding: 10px;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .brand-title {
+        font-size: 16px;
+    }
+
+    .header-info {
+        font-size: 11px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .control-subpanel {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 8px;
+    }
+
+    .filter-group, .search-group {
+        width: 100%;
+    }
+
+    .filter-group select {
+        flex: 1; /* Dropdowns share horizontal space equally on mobile */
+        min-width: 80px;
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .search-group input {
+        flex: 1;
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .search-group button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    #map {
+        height: calc(100vh - 175px); /* Adjusts canvas for multi-tier mobile menu */
+    }
+
+    /* Transform Floating Info Card into a Mobile Bottom Sheet */
+    .info-panel-card {
+        position: absolute;
+        top: auto;
+        bottom: 25px; /* Sits exactly over coordinate footer */
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: 40vh;
+        border-radius: 12px 12px 0 0; /* Rounded top edges like modern apps */
+        border-top: 4px solid #0B2545;
+        box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+        overflow-y: auto;
+    }
+
+    .panel-body {
+        padding: 12px;
+    }
+
+    .details-table th, .details-table td {
+        padding: 6px 0;
+        font-size: 12px;
+    }
+}
