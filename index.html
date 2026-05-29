@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web GIS Dashboard - Parva Planning and Infrastructure</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <script>
+        if (localStorage.getItem('gis_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <header class="navbar">
+        <div class="nav-left">
+            <span class="brand-title">Parva Planning and Infrastructure</span>
+            <div class="filter-panel">
+                <select id="districtFilter">
+                    <option value="">Select District</option>
+                </select>
+                <select id="talukFilter" disabled>
+                    <option value="">Select Taluk</option>
+                </select>
+                <select id="layoutFilter" disabled>
+                    <option value="">Select Layout</option>
+                </select>
+                <button id="btnReset" class="btn-secondary">Reset View</button>
+            </div>
+        </div>
+        
+        <div class="nav-right">
+            <div class="search-box">
+                <input type="text" id="propertySearchInput" placeholder="Search Property No...">
+                <button id="btnSearch">Search</button>
+            </div>
+            <div class="header-info">
+                <span id="dateTimeDisplay"></span>
+                <span class="visitor-tag">Visitors: <strong id="visitorCount">1,482</strong></span>
+                <button onclick="localStorage.removeItem('gis_logged_in'); window.location.href='login.html';" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="map"></div>
+
+    <footer class="coordinates-footer">
+        <span>Coordinates: <strong id="mouseCoordinates">Latitude: 0.00000, Longitude: 0.00000</strong></span>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Parva Planning and Infrastructure</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2>Parva Planning & Infrastructure</h2>
+        <p>Web GIS Portal Sign In</p>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="admin@parva.com">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+        <p id="error-msg" class="error-hidden">Invalid credentials. Try admin@parva.com / admin123</p>
+    </div>
+
+    <script>
+        // Simple frontend authentication for testing purposes
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === 'admin@parva.com' && password === 'admin123') {
+                // Set mock session login status
+                localStorage.setItem('gis_logged_in', 'true');
+                window.location.href = 'index.html';
+            } else {
+                const errorMsg = document.getElementById('error-msg');
+                errorMsg.className = 'error-visible';
+            }
+        });
+    </script>
+</body>
+</html><!-- login.html -->

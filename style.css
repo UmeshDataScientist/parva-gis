@@ -1,0 +1,284 @@
+/* Color Palette & Base Configurations */
+:root {
+    --primary-color: #0B2545; /* Dark Blue */
+    --secondary-color: #134074;
+    --accent-color: #8DA9C4;
+    --light-bg: #EEF4F8;
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Login Page Layout Styles */
+.login-body {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.login-container p {
+    color: #666;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: var(--secondary-color);
+}
+
+.error-hidden { display: none; }
+.error-visible { color: red; font-size: 12px; margin-top: 10px; display: block;}
+
+/* Main Dashboard Elements Header Grid Styles */
+.navbar {
+    height: 60px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    position: relative;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-title {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.filter-panel select, .search-box input {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--white);
+    outline: none;
+}
+
+.search-box button, .btn-secondary, .btn-logout {
+    padding: 6px 12px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-logout { background-color: #a30000; border: none; }
+.btn-logout:hover { background-color: #d30000; }
+
+.header-info {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.visitor-tag {
+    background-color: var(--secondary-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Leaflet Full-Screen Map Panel */
+#map {
+    height: calc(100vh - 85px);
+    width: 100%;
+    z-index: 1;
+}
+
+/* Coordinates Status Bar Footer */
+.coordinates-footer {
+    height: 25px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    position: relative;
+}
+/* Stylized Floating Attribute Display Card */
+.info-panel-card {
+    position: absolute;
+    top: 80px;      /* Drops it cleanly below your navbar header */
+    left: 20px;     /* Places it nicely on the left sidebar region */
+    width: 320px;
+    background: #FFFFFF !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    
+    /* Crucial fix: Forces the card to layer on top of the map canvas */
+    z-index: 2000 !important; 
+    
+    display: none;  /* Handled dynamically by JS (.classList.add('visible')) */
+    flex-direction: column;
+    overflow: hidden;
+    border-top: 4px solid #0B2545; /* Corporate Dark Blue Theme bar */
+}
+
+/* Toggled state class executed via JavaScript */
+.info-panel-card.visible {
+    display: flex !important;
+}
+
+.panel-header {
+    background: #f8fafc;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.panel-header h3 {
+    color: #0B2545;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.panel-header button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #94a3b8;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.panel-body {
+    padding: 16px;
+    background: #FFFFFF;
+}
+
+/* Attributes Data Table Layout formatting */
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.details-table th {
+    color: #64748b;
+    font-weight: 500;
+    font-size: 13px;
+    text-align: left;
+    padding: 8px 0;
+    width: 40%;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.details-table td {
+    color: #1e293b;
+    font-size: 13px;
+    text-align: left;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.highlight {
+    color: #134074;
+    font-size: 14px;
+}
+
+/* Status Pill Configurations */
+.status-tag {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Google Maps Button Styling Action */
+.btn-navigate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px;
+    background-color: #134074;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-navigate:hover {
+    background-color: #0b2545;
+}
