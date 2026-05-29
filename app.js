@@ -55,8 +55,8 @@ function getPropValue(feature, targetKey) {
     return actualKey ? feature.properties[actualKey] : null;
 }
 
-// 3. Load & Process Your Shapefile-converted GeoJSON
-fetch('data/layout.geojson')
+// 3. Load & Process Your Shapefile-converted GeoJSON (FIXED PATH FOR GITHUB PAGES)
+fetch('./data/layout.geojson')
     .then(response => response.json())
     .then(data => {
         geojsonData = data;
@@ -279,7 +279,7 @@ function showPropertyDetails(props, center) {
     const finalLat = getPropValue(dummyFeature, 'Latitude') || center.lat;
     const finalLng = getPropValue(dummyFeature, 'Longitude') || center.lng;
 
-    // Fixed Google Maps Universal Deep Link String Interpolation syntax
+    // FIXED: Correct Google Maps Deep Link Query Format
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${finalLat},${finalLng}`;
 
     // Track active target selection key on panel tracking instance
@@ -294,7 +294,7 @@ function showPropertyDetails(props, center) {
             <table class="details-table">
                 <tr><th>Property No</th><td><strong class="highlight">${propNo}</strong></td></tr>
                 <tr><th>Category</th><td>${category}</td></tr>
-                <tr><th>Sector</th><td>${props.Sector || sector}</td></tr>
+                <tr><th>Sector</th><td>${sector}</td></tr>
                 <tr><th>Layout Name</th><td>${layoutName}</td></tr>
                 <tr><th>Taluk Location</th><td>${taluk}</td></tr>
                 <tr><th>District</th><td>${district}</td></tr>
